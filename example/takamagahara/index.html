@@ -1,16 +1,18 @@
+<!DOCTYPE html>
 <html>
   <head>
     <script src="//unpkg.com/3d-force-graph"></script>
-    <link rel="stylesheet" href="../src/3d-force-graph.css">
+    <link rel="stylesheet" href="3d-force-graph.css">
     <!--<script src="../../dist/3d-force-graph.js"></script>-->
   </head>
-  <div class="toptext">Takamagahara</div>
+  <!-- <div class="toptext">Takamagahara</div> -->
 
   <body style="background-color:black;">
 
     <div id="3d-graph"></div>
-    <h1 style = "color: beige;">Takamagahara:Star Map of the Financial Internet</h1>
-    <h2 style = "color: beige;">Outside Trading</h2>
+    
+    <h1 style = "color: beige;">Takamagahara <br><br>  A Star Map of the Financial Internet</h1>
+    <!-- <h2 style = "color: beige;">A Star Map of the Financial Internet</h2> -->
     <script type="module">
     
     var HttpClient = function() {
@@ -41,6 +43,7 @@
       
       
       const Graph = ForceGraph3D()(elem)
+        .backgroundColor("#000000")
         .graphData(net)
         // .jsonUrl('https://api.npoint.io/4518c0a1f2fee5f30b71')
         .nodeAutoColorBy('Count')
@@ -50,8 +53,9 @@
         .nodeLabel(node => `${node.id} : ${node.Count}`)
         .onBackgroundClick(node => isRotationActive =!isRotationActive)
         .onNodeHover(node => elem.style.cursor = node ? 'pointer' : null)
-        // .onNodeClick(node => window.open(`https://www.marketwatch.com/investing/stock/${node.id}`, '_blank'))
+        .onNodeRightClick(node => window.open(`https://www.marketwatch.com/investing/stock/${node.id}`, '_blank'))
         .onNodeClick(node => focusNode(node))
+        
         .cameraPosition({ z: distance });
         // .onLinkHover(link);
 
